@@ -1,0 +1,20 @@
+.container {
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.buttonContainer button {
+    margin-top: 3px;
+    margin-right: 3px;
+}
+
+.textContainer {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 6px;
+}

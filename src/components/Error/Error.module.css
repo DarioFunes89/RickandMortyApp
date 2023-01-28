@@ -1,0 +1,18 @@
+.divError{
+    display:inline-block;
+    justify-content: center;    
+    background-color:aliceblue;   
+    padding: 3%;
+    border-color:gray;
+    border-width: 15%;
+    border-radius: 5%;
+    border-style: double;
+    box-shadow: 10%;
+    
+    
+}
+.title{
+    margin-left: 10px;
+    margin-right: 10px;
+    justify-items: center;
+}

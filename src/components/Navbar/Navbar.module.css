@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.link {
+    color: white;
+    text-decoration: none;
+    margin-right: 10px;
+    margin-top: 10px;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.link:hover {
+    cursor: pointer;
+}

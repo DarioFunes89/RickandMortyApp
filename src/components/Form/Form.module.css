@@ -1,0 +1,15 @@
+.warning {
+  color: rgb(114, 4, 198);
+    justify-content: center;
+    align-items: center;
+}
+
+.danger {
+  font-size: 10px;
+  color: white;
+  margin-left: 10em;
+}
+
+.button {
+  cursor: pointer;
+}
