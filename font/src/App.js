@@ -18,13 +18,12 @@ function App () {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const username = 'dario@gmail.com';
+  const username = 'dario@mail.com';
   const password = 'dario123';
 
   const [access, setAccess] = useState(false);
 
   const [characters, setCharacters] = useState([]);
-
 
  function login(userData){
     if (userData.password === password && userData.username === username) {
@@ -34,7 +33,7 @@ function App () {
  }
 
  const onSearch = (character) => {
-  fetch(`http://localhost:3001/rickandmorty/character/${character}`)
+  fetch(`http://localhost:3001/rickandmorty/onsearch/${character}`)
       .then((response) => response.json())
       .then((data) => {
          if (data.name) {
@@ -65,6 +64,19 @@ function App () {
         <Route path='*' element={<Error/>}/>
       </Routes>
     </div>
+    //   <div>
+    // <Estrellas>
+    // <div className='App' style={{ padding: '25px' }}>
+    //     <Navbar onSearch={onSearch}/>
+    //   </div>
+    //   <div>
+    //     <Cards
+    //       characters={characters}
+    //       onClose={onClose}
+    //     />
+    //   </div>
+    // </div>
+    // </Estrellas>
   )
 }
 
