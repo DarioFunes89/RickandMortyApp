@@ -1,22 +1,26 @@
-const http = require("http");
-const getCharById = require("../controllers/getCharById");
-const getCharDetail = require("../controllers/getCharDetail");
-const data = require("../utils/data.js");
 
-http.createServer(function(req, res){
-    res.setHeader('Access-Control-Allow-Origin', '*');
+const express = require('express');
+const { router } = require('../routes/index');
+const cors = require('cors')
+const PORT = 3001;
 
-    let id = req.url.split("/").at(-1);
+const server = express();
 
-    if(req.url.includes("onsearch")){
-        getCharById(res, id);
-    }
+server.use(express.json());
+server.use(cors());
 
-    if(req.url.includes("detail")){
-        getCharDetail(res, id);
-    }
-}
-).listen(3001, () => {
-    console.log("server levantado");
+server.use((req, res, next) => {
+   res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); //Autorizo recibir solicitudes de este dominio
+   res.header('Access-Control-Allow-Credentials', true); //Autorizo recibir solicitudes que incluyan el encabezado con credenciales
+   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); //Autorizo recibir solicitudes con dichos hedears
+   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE'); //Autorizo las solicitudes tipo GET, POST, OPTIONS, PUT y DELETE.
+   next();
 });
 
+server.use('/', router);
+
+server.listen(PORT, () => {
+   console.log('Server levantado en el puerto ' + PORT);
+});
+
+module.exports = { server };

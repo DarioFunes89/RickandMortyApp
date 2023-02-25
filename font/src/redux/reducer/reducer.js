@@ -1,5 +1,4 @@
-import { DELETE_FAVORITE, ADD_FAVORITE, FILTER, ORDER } from "../actions/types";
-
+import { DELETE_FAVORITE, ADD_FAVORITE, GET_FAVORITE, FILTER, ORDER } from "../actions/types";
 
 
 const initialState = {
@@ -13,15 +12,13 @@ function rootReducer (state=initialState, { type, payload }){
             return {
                 ...state,
                 allCharacters: [...state.allCharacters, payload],
-                myFavorites: [...state.myFavorites, payload]
-
+                myFavorites: payload
             }
         case DELETE_FAVORITE:
-            const filtered = state.myFavorites.filter(
-                fav => fav.id !== payload)
             return {
                 ...state,
-                myFavorites: filtered
+                allCharacters: payload,
+                myFavorites: payload
             }
         case FILTER:
             const filterCopy = [...state.allCharacters];
@@ -32,7 +29,6 @@ function rootReducer (state=initialState, { type, payload }){
                 ...state,
                 myFavorites: filterGender,
             }
-        
         case ORDER:
             const orderCopy = [...state.allCharacters];
 
@@ -49,6 +45,12 @@ function rootReducer (state=initialState, { type, payload }){
             return {
                 ...state,
                 myFavorites: order
+            }
+        case GET_FAVORITE:
+            return {
+                ...state,
+                allCharacters: payload,
+                myFavorites: payload
             }
 
         default:

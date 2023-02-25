@@ -1,16 +1,50 @@
-import { DELETE_FAVORITE, ADD_FAVORITE, FILTER, ORDER } from "./types";
+import axios from "axios";
 
-export function addFavorite(fav){
-    return {
-        type: ADD_FAVORITE,
-        payload: fav
+import { DELETE_FAVORITE, ADD_FAVORITE, GET_FAVORITE, FILTER, ORDER } from "./types";
+
+export function addFavorite(charac){
+    return async function (dispatch){
+        try {
+            const result = await axios.post(`http://localhost:3001/rickandmorty/fav`, charac)
+            return dispatch({
+                        type: ADD_FAVORITE,
+                        payload: result.data
+                    })
+        } catch (error) {
+            console.log(error);
+        }
+
     }
 }
 
 export function deleteFavorite(id){
-    return {
-        type: DELETE_FAVORITE,
-        payload: id
+    return async function(dispatch){
+        try {
+            const result = await axios.delete(`http://localhost:3001/rickandmorty/fav/${id}`)
+            console.log(result);
+            const dataDeleted = result.data;
+                return dispatch({
+                    type: DELETE_FAVORITE,
+                    payload: dataDeleted
+                })
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
+
+export function getFavorites() {
+    return async function(dispatch){
+        try {
+            const result = axios.get('http://localhost:3001/rickandmorty/fav')
+            console.log(result);
+            return dispatch ({
+                type: GET_FAVORITE,
+                payload: result.data
+            })
+        } catch (error) {
+            console.log(error);
+        }
     }
 }
 
@@ -27,4 +61,3 @@ export function orderCards(id){
         payload: id
     }
 }
-
